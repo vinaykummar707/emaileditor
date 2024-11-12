@@ -1,4 +1,4 @@
-import { Copy, Pencil, Trash } from "lucide-react";
+import { Copy, CopyIcon, Pencil, Trash } from "lucide-react";
 import React from "react";
 
 const EmailTemplateCard = () => {
@@ -918,7 +918,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 </html> `;
   return (
     <div className="bg-white flex flex-col rounded  border ">
-      <div className="h-[300px] p-1.5 flex flex-col justify-between ">
+      <div className="h-[280px] p-1.5 flex flex-col justify-between ">
         <iframe
           id="frame"
           className="flex-1 "
@@ -947,15 +947,23 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
           <Pencil size={16} />
           Edit Template
         </button> */}
-        <div className="flex items-center gap-2 flex-row w-full justify-stretch">
-          <button className="bg-stone-1000 border  justify-center text-whites flex flex-row items-center gap-2 hover:bg-stone-200 px-3 flex-1 py-1.5 rounded font-medium  text-sm">
-            <Trash size={14} />
-            Delete
-          </button>
-          <button className="bg-stone-1000 border justify-center text-whites flex flex-row items-center gap-2 hover:bg-stone-200 px-3 flex-1 py-1.5 rounded font-medium  text-sm">
-            <Pencil size={14} />
-            Edit
-          </button>
+        <div className="flex flex-col gap-1.5 w-full">
+          <div className="flex items-center gap-1.5 flex-row  justify-stretch">
+            <button className="bg-stone-1000 border  justify-center text-whites flex flex-row items-center gap-2 hover:bg-stone-100 px-3 flex-1 py-2 rounded font-medium  text-sm">
+              <Trash size={14} />
+              Delete
+            </button>
+            <button className="bg-stone-1000 border justify-center text-whites flex flex-row items-center gap-2 hover:bg-stone-100 px-3 flex-1 py-2 rounded font-medium  text-sm">
+              <CopyIcon size={14} />
+              Duplicate
+            </button>
+          </div>
+          <div className="flex items-center gap-2 flex-row w-full justify-stretch">
+            <button className="bg-stone-100 border justify-center text-whites flex flex-row items-center gap-2 hover:bg-stone-200/60 px-3 flex-1 py-2 rounded font-medium  text-sm">
+              <Pencil size={14} />
+              Edit Template
+            </button>
+          </div>
         </div>
       </div>
     </div>
