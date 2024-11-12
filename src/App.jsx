@@ -1,29 +1,29 @@
-import { useRef } from 'react';
-import { EmailEditor } from 'react-email-editor';
-import sample from './sample.json';
+import { useRef } from "react";
+import { EmailEditor } from "react-email-editor";
+import sample from "./sample.json";
 import {
-	Braces,
-	ChevronLeft,
-	CloudUpload,
-	CodeXml,
-	FileJson,
-	PaintRoller,
-	PencilRuler,
-	PenTool,
-	RefreshCcw,
-	RefreshCcwIcon,
-	Trash2,
-	WandSparkles,
-} from 'lucide-react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import html2canvas from 'html2canvas';
-import MDEditor from '@uiw/react-md-editor';
-import '@uiw/react-md-editor/markdown-editor.css';
+  Braces,
+  ChevronLeft,
+  CloudUpload,
+  CodeXml,
+  FileJson,
+  PaintRoller,
+  PencilRuler,
+  PenTool,
+  RefreshCcw,
+  RefreshCcwIcon,
+  Trash2,
+  WandSparkles,
+} from "lucide-react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import html2canvas from "html2canvas";
+import MDEditor from "@uiw/react-md-editor";
+import "@uiw/react-md-editor/markdown-editor.css";
 
 function App() {
-	const emailEditorRef = useRef();
-	const codeString = `\`\`\`html <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  const emailEditorRef = useRef();
+  const codeString = `\`\`\`html <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
 <!--[if gte mso 9]>
@@ -937,173 +937,181 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 </body>
 
 </html> \`\`\``;
-	const onEditorLoad = (editor) => {
-		console.log('====================================');
-		const html = editor.exportHtml();
-		console.log('====================================');
-		console.log(html);
-		console.log('====================================');
-		console.log('====================================');
-		editor.loadDesign(sample);
-	};
+  const onEditorLoad = (editor) => {
+    console.log("====================================");
+    const html = editor.exportHtml();
+    console.log("====================================");
+    console.log(html);
+    console.log("====================================");
+    console.log("====================================");
+    editor.loadDesign(sample);
+  };
 
-	const exportDesignToHtml = async () => {
-		console.log(emailEditorRef.current.editor);
-		emailEditorRef.current.editor.exportHtml(async ({ html }) => {
-			console.log(html);
-			const canvas = await html2canvas(html);
-			console.log('====================================');
-			console.log(canvas);
-			console.log('====================================');
-		});
-	};
+  const exportDesignToHtml = async () => {
+    console.log(emailEditorRef.current.editor);
+    emailEditorRef.current.editor.exportHtml(async ({ html }) => {
+      console.log(html);
+      const canvas = await html2canvas(html);
+      console.log("====================================");
+      console.log(canvas);
+      console.log("====================================");
+    });
+  };
 
-	return (
-		<>
-			<div className="h-screen w-screen overflow-hidden bg-stone-100 flex flex-row">
-				<div className="flex-1 flex-col flex">
-					<div className="h-[64px] flex-shrink-0 flex flex-row justify-between px-2 items-center bg-white border-b">
-						<div className="flex flex-row gap-2 items-center">
-							<button className=" flex flex-col justify-center items-center ">
-								<ChevronLeft size={24} />
-							</button>
-							<h1 className="text-lg font-medium">
-								Successfull Registration Template
-							</h1>
-							<span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font- border border-green-300 bg-green-100 text-green-700  ">
-								Active
-							</span>
-						</div>
-						<div className="flex flex-row items-center gap-1.5">
-							{/* <button className="bg-stone-100 flex flex-row items-center gap-1.5 hover:bg-stone-200/80 px-4 py-2.5 rounded-md font-medium  text-sm">
+  return (
+    <>
+      <div className="h-screen w-screen overflow-hidden bg-stone-100 flex flex-row">
+        <div className="flex-1 flex-col flex">
+          <div className="py-3 flex-shrink-0 flex flex-row justify-between px-2 items-center bg-white border-b">
+            <div className="flex flex-row gap-2 items-center">
+              <button className=" flex flex-col justify-center items-center ">
+                <ChevronLeft size={24} />
+              </button>
+              <h1 className="text-lg font-medium">
+                Successfull Registration Template
+              </h1>
+              <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font- border border-green-300 bg-green-100 text-green-700  ">
+                Active
+              </span>
+            </div>
+            <div className="flex flex-row items-center gap-1.5">
+              {/* <button className="bg-stone-100 flex flex-row items-center gap-1.5 hover:bg-stone-200/80 px-4 py-2.5 rounded-md font-medium  text-sm">
 								<Braces size={16} />
 								Export JSON
 							</button> */}
-							<button className="border border-stone-300  flex flex-row items-center gap-2 hover:bg-stone-50 px-3 py-2.5 rounded-md font-medium  text-sm">
-								<WandSparkles size={18} />
-								Sample Template Designs
-							</button>
-							<button className="bg-red-600 text-white flex flex-row items-center gap-2 hover:bg-red-700 px-3 py-2.5 rounded-md font-medium  text-sm">
-								<Trash2 size={18} />
-								Delete Template
-							</button>
-						</div>
-					</div>
-					<div className="flex-1 overflow-hidden flex-row  flex ">
-						<div className="flex-1 overflow-hidden flex-row p-4 gap-2 flex ">
-							<div className="flex  flex-col self-start border items-center">
-								<button className="bg-stone-900 text-white  size-11 border-b flex flex-row items-center gap-1.5 hover:bg-stone-200/55 justify-center rounded-lgs">
-									<PenTool size={18} />
-								</button>
-								<button className="bg-white  size-11 border-b flex flex-row items-center gap-1.5 hover:bg-stone-200/55 justify-center rounded-lgs">
-									<FileJson size={18} />
-								</button>
-								<button className="bg-white  size-11 border-b flex flex-row items-center gap-1.5 hover:bg-stone-200/55 justify-center rounded-lgs">
-									<CodeXml size={18} />
-								</button>
-							</div>
+              <button className="border border-stone-300  flex flex-row items-center gap-2 hover:bg-stone-50 px-3 py-2.5 rounded-md font-medium  text-sm">
+                <WandSparkles size={18} />
+                Sample Template Designs
+              </button>
+              <button className="bg-red-600 text-white flex flex-row items-center gap-2 hover:bg-red-700 px-3 py-2.5 rounded-md font-medium  text-sm">
+                <Trash2 size={18} />
+                Delete Template
+              </button>
+            </div>
+          </div>
+          <div className="flex-1 overflow-hidden flex-row  flex ">
+            <div className="flex-1 overflow-hidden flex-row p-4 gap-2 flex ">
+              <div className="flex  flex-col self-start border items-center">
+                <button className="bg-stone-900 text-white  size-10 border-b flex flex-row items-center gap-1.5 hover:bg-stone-800 justify-center rounded-lgs">
+                  <PenTool size={18} />
+                </button>
+                {/* <button className="bg-white  size-11 border-b flex flex-row items-center gap-1.5 hover:bg-stone-200/55 justify-center rounded-lgs">
+                  <FileJson size={18} />
+                </button>
+                <button className="bg-white  size-11 border-b flex flex-row items-center gap-1.5 hover:bg-stone-200/55 justify-center rounded-lgs">
+                  <CodeXml size={18} />
+                </button> */}
+              </div>
 
-							<EmailEditor
-								onLoad={onEditorLoad}
-								ref={emailEditorRef}
-								style={{
-									flex: 1,
-									margin: '0px',
-									border: '1px solid #E1E1E1FF',
-								}}
-								options={{
-									version: 'latest',
-									features: {
-										undoRedo: true,
-										stockImages: true,
-									},
-									devices: ['mobile', 'desktop', 'tablet'],
-									appearance: {
-										actionBar: { placement: 'bottom' },
-										panels: {
-											tools: {
-												dock: 'right',
-												collapsible: true,
-											},
-										},
-									},
-								}}
-							/>
-							{/* <div className="flex-1 overflow-y-scroll  w-1">
+              <EmailEditor
+                onLoad={onEditorLoad}
+                ref={emailEditorRef}
+                style={{
+                  flex: 1,
+                  margin: "0px",
+                  border: "1px solid #E1E1E1FF",
+                }}
+                options={{
+                  version: "latest",
+                  features: {
+                    undoRedo: true,
+                    stockImages: true,
+                  },
+                  devices: ["mobile", "desktop", "tablet"],
+                  appearance: {
+                    actionBar: { placement: "bottom" },
+                    panels: {
+                      tools: {
+                        dock: "right",
+                        collapsible: true,
+                      },
+                    },
+                  },
+                }}
+              />
+              {/* <div className="flex-1 overflow-y-scroll  w-1">
 								<MDEditor.Markdown
 									source={codeString}
 									style={{ whiteSpace: 'pre-wrap' }}
 								/>
 							</div> */}
-						</div>
+            </div>
 
-						{/* <SyntaxHighlighter
+            {/* <SyntaxHighlighter
 							customStyle={{ flex: 1 }}
 							language="javascript"
 							style={darcula}
 						>
 							{codeString}
 						</SyntaxHighlighter> */}
-						{/* <div className="w flex flex-row justify-end items-center">
+            {/* <div className="w flex flex-row justify-end items-center">
 							<button className="bg-stone-200 px-4 py-2.5 rounded-md text-white text-sm">
 								Save Changes
 							</button>
 						</div> */}
-						<div className="w-[300px] flex-shrink-0 bg-white border-l  justify-between flex flex-col gap-4 px-4 py-4 ">
-							<h1 className="font-semibold text-lg">Template Configuration</h1>
-							<div className="flex flex-1  flex-col gap-3">
-								<div className="flex flex-col gap-2">
-									<label className="text-xs text-stone">
-										Name For Template
-									</label>
-									<input
-										placeholder="Type here"
-										className="h-10 px-3 bg-stone-1000 border outline-none ring-0 rounded text-stone-800 text-xs"
-										type="text"
-									></input>
-								</div>
-								<div className="flex flex-col gap-2">
-									<label className="text-xs text-stone">Event To Choose</label>
-									<input
-										placeholder="Type here"
-										className="h-10 px-3 bg-stone-1000 border outline-none ring-0 rounded text-stone-800 text-xs"
-										type="text"
-									></input>
-								</div>
-							</div>
+            <div className="w-[300px] flex-shrink-0 bg-white border-l  justify-between flex flex-col gap-4 px-4 py-4 ">
+              <h1 className="font-semibold text-lg">Template Configuration</h1>
+              <div className="flex flex-1  flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs text-stone">
+                    Name For Template
+                  </label>
+                  <input
+                    placeholder="Type here"
+                    className="h-10 px-3 bg-stone-1000 border outline-none ring-0 rounded text-stone-800 text-xs"
+                    type="text"
+                  ></input>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs text-stone">Email Subject</label>
+                  <input
+                    placeholder="Type here"
+                    className="h-10 px-3 bg-stone-1000 border outline-none ring-0 rounded text-stone-800 text-xs"
+                    type="text"
+                  ></input>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs text-stone">Event To Choose</label>
+                  <input
+                    placeholder="Type here"
+                    className="h-10 px-3 bg-stone-1000 border outline-none ring-0 rounded text-stone-800 text-xs"
+                    type="text"
+                  ></input>
+                </div>
+              </div>
 
-							<div className="flex flex-col  gap-2">
-								<button className="bg-stone-100 flex justify-center flex-row items-center gap-2 hover:bg-stone-200/60 px-4 py-2.5 rounded font-medium  text-sm">
-									<RefreshCcw size={18} />
-									Reset Changes
-								</button>
-								<button className="bg-stone-100 flex justify-center flex-row items-center gap-2 hover:bg-stone-200/60 px-4 py-2.5 rounded font-medium  text-sm">
-									<Braces size={18} />
-									Export JSON
-								</button>
-								<button
-									onClick={exportDesignToHtml}
-									className="bg-stone-100 flex justify-center flex-row items-center gap-2 hover:bg-stone-200/60 px-4 py-2.5 rounded font-medium  text-sm"
-								>
-									<CodeXml size={18} />
-									Export HTML
-								</button>
+              <div className="flex flex-col  gap-2">
+                <button className="bg-stone-100 flex justify-center flex-row items-center gap-2 hover:bg-stone-200/60 px-4 py-2.5 rounded font-medium  text-sm">
+                  <RefreshCcw size={18} />
+                  Reset Changes
+                </button>
+                <button className="bg-stone-100 flex justify-center flex-row items-center gap-2 hover:bg-stone-200/60 px-4 py-2.5 rounded font-medium  text-sm">
+                  <Braces size={18} />
+                  Export JSON
+                </button>
+                <button
+                  onClick={exportDesignToHtml}
+                  className="bg-stone-100 flex justify-center flex-row items-center gap-2 hover:bg-stone-200/60 px-4 py-2.5 rounded font-medium  text-sm"
+                >
+                  <CodeXml size={18} />
+                  Export HTML
+                </button>
 
-								<button className="bg-stone-100 flex justify-center flex-row items-center gap-2 hover:bg-stone-200/60 px-4 py-2.5 rounded font-medium  text-sm">
-									<PaintRoller size={18} />
-									Update Design
-								</button>
-								<button className="bg-stone-950 text-white flex justify-center flex-row items-center gap-2 px-4 py-2.5 rounded font-medium  text-sm">
-									<CloudUpload size={18} />
-									Save Template
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
-	);
+                <button className="bg-stone-100 flex justify-center flex-row items-center gap-2 hover:bg-stone-200/60 px-4 py-2.5 rounded font-medium  text-sm">
+                  <PaintRoller size={18} />
+                  Update Design
+                </button>
+                <button className="bg-stone-950 text-white flex justify-center flex-row items-center gap-2 px-4 py-2.5 rounded font-medium  text-sm">
+                  <CloudUpload size={18} />
+                  Save Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default App;
